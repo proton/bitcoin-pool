@@ -33,6 +33,7 @@ GEM
       activesupport (= 3.0.7)
     activesupport (3.0.7)
     arel (2.0.10)
+    bcrypt-ruby (2.1.4)
     bcrypt-ruby (2.1.4-x86-mingw32)
     builder (2.1.2)
     capistrano (2.6.0)
@@ -56,6 +57,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mysql (2.8.1)
     mysql (2.8.1-x86-mingw32)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -99,6 +101,7 @@ GEM
     will_paginate (2.3.15)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES

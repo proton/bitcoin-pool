@@ -1,0 +1,16 @@
+/* Statistics table */
+table.statistics {
+  position: absolute;
+  top: 25px;
+  right: 125px;
+}
+
+ table.statistics th {
+  min-width: 7em;
+}
+
+table.statistics th {
+  text-align: right;
+  padding-right: 1em;
+  font-weight: bold;
+}

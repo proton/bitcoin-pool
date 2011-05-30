@@ -3,9 +3,9 @@
 
 %html
   %head
-    %title= t(:website_title)
+    %title= t(:title)
 
-    = stylesheet_link_tag %w{application}, :cache => "all"
+    = stylesheet_link_tag %w{ reset application bitcoin-pool }, :cache => "all"
     = javascript_include_tag :defaults, :cache => "all"
     = active_scaffold_includes
     = csrf_meta_tag
@@ -14,12 +14,19 @@
 
   %body{ :class => [request[:controller], "#{request[:controller]}-#{request[:action]}"] }
     #content
-      %h1#main-title= link_to(content_tag(:span, "Welcome"), root_path)
+      %h1#main-title= link_to(content_tag(:span, t(:title)), root_path)
+
+      = render :partial => 'layouts/statistics'
+
+      = render :partial => 'layouts/user_informations'
 
       = render :partial => 'layouts/flash', :object => flash
 
       #right-content
         = yield
+        
+    #footer= t(".footer")
+      
 
 
  

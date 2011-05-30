@@ -1,0 +1,27 @@
+en:
+  informations:
+    welcome:
+      header: Welcome to Bitcoin-Pool !
+      description: >
+        This is the demo instance of the bitcoin-pool app. It is intended as a frontend
+        for the open-source pushpool pooled Bitcoin mining proxy.
+      development_status: It is currently under heavy development, check on it from time to time !
+
+  layouts:
+    application:
+      footer: Powered by bitcoin-pool platform
+      
+    statistics:
+      hashrate: Hashrate
+      active_workers: Active workers
+
+    user_informations:
+      signed_in_as: Signed-in as
+      logout: Logout
+      sign_up: Sign-up
+      sign_in: Sign-in
+
+
+
+      
+
