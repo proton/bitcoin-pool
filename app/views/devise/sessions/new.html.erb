@@ -2,9 +2,8 @@
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div class="form-field">
-    <%= f.label :nick %>
-    <%= f.text_field :nick %>
-    <div class="explanation"><%= t :nick_description %></div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>   
   </div>
 
   <div class="form-field">
@@ -22,7 +21,7 @@
   <% end -%>
 
   <div class="form-field">
-    <%= f.submit t(:sign_in), :class => "submit" %>
+    <%= f.submit t(".sign_in"), :class => "submit" %>
   </div>
 <% end %>
 

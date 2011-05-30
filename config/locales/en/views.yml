@@ -13,15 +13,45 @@ en:
       
     statistics:
       hashrate: Hashrate
-      active_workers: Active workers
+      workers: Workers
 
     user_informations:
       signed_in_as: Signed-in as
       logout: Logout
       sign_up: Sign-up
       sign_in: Sign-in
-
-
-
       
+  devise:
+    sessions:
+      new:
+        sign_in: Sign-in
+        email: E-mail
+        
+    shared:
+      links:
+        password_forgotten: Password forgotten ?
+        didnt_receive_confirmation: Didn't receive confirmation instructions ?
+        didnt_receive_unlock_instructions: Didn't receive unlock instructions ?
+    
+    confirmations:
+      new:
+        resend_confirmation: Resend confirmation
+        
+    passwords:
+      new:
+        reset_password: Reset password
+        password_forgotten: Password forgotten ?
+      edit:
+        change_password: Change password
+
+  registrations:
+    new: 
+      sign_up: Create an account
+    
+  users:
+    form:
+      submit: Save
+      error:
+        one: An error prevent your account from being saved
+        other: %{count} errors prevented your account from being saved
 

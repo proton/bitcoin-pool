@@ -1,0 +1,21 @@
+= form_for @user, ({ :url => user_registration_path } if @user.new_record? ) do |f|
+  = errors_for @user, :message => t(".error", :count => @user.errors.count)
+
+  .form-field
+    = f.label :email
+    = f.text_field :email, :disabled => !@user.new_record?
+
+  .form-field
+    = f.label :nick
+    = f.text_field :nick, :disabled => !@user.new_record?
+
+  .form-field
+    = f.label :password
+    = f.password_field :password
+
+  .form-field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+
+  .form-field
+    = f.submit t(".submit"), :class => 'submit'

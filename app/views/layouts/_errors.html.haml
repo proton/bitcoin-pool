@@ -1,0 +1,7 @@
+- if model.errors.any?
+  #errors
+    %h2= message
+      
+    %ul
+      - model.errors.full_messages.each do |msg|
+        %li= msg
