@@ -3,7 +3,7 @@ BitcoinPool::Application.routes.draw do
     :registrations => "registrations"
   }
   
-  resource :user, :only => [:edit, :update] do
+  resource :user, :only => [:edit, :update, :show] do
     resources :workers
   end
   
