@@ -17,4 +17,3 @@ test:
   username: rails
   password: rails
   socket: /var/run/mysqld/mysqld.sock
-
