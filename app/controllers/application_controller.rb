@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # and the number of active workers
   def get_stats
     @hashrate = "%.2f" % Share.hashrate.to_s
-    @workers = Worker.recently_active
+    @active_workers = Worker.recently_active
   end
 
   # Ensures that all timestamps comparisons compare UTC timestamps

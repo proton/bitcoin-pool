@@ -4,8 +4,21 @@ en:
       user:
         one: User
         other: Users
+        
+      worker:
+        one: Worker
+        other: Workers
       
     attributes:
       user:
         email: E-mail
         nick: Nickname
+        
+      worker:
+        username: Login
+        password: Password
+        found_blocks: Found blocks
+        current_shares: Shares
+        last_share_at: Last share
+        suffix: Login suffix
+        stale_shares: Stale

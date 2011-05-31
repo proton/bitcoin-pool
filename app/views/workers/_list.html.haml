@@ -1,0 +1,27 @@
+= creation_link :user_worker, t(".add")
+
+%table.default
+  %tr
+    %th= t("activerecord.attributes.worker.username")
+    %th= t("activerecord.attributes.worker.password")
+    %th= t("activerecord.attributes.worker.found_blocks")
+    %th= t("activerecord.attributes.worker.current_shares")
+    %th= t("activerecord.attributes.worker.last_share_at")
+    %th= t("activerecord.attributes.worker.stale_shares")
+    %th.auto-sized
+    %th.auto-sized
+
+  - unless workers.blank?
+    - workers.each do |worker|
+      %tr{ :class => cycle('even', 'odd') }
+        %td= worker.username
+        %td= worker.password
+        %td= worker.found_blocks
+        %td= worker.current_shares
+        %td= worker.last_share_at ? l(worker.last_share_at) : t(".na")
+        %td= stale_shares_for(worker)
+        %td.auto-sized= link_to(image_tag("details.png"), edit_user_worker_path(worker))
+        %td.auto-sized= link_to(image_tag("delete.png"), user_worker_path(worker), :class => "delete", :method => :delete, :confirm => t(".confirm") )
+  
+  - else
+    = render :partial => 'layouts/no_data', :locals => { :message => t('.no_workers') }

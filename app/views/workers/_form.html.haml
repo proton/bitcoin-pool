@@ -1,0 +1,15 @@
+= form_for [:user, worker] do |f|
+  = errors_for worker, :message => t(".error", :count => worker.errors.count)
+
+  .form-field
+    = f.label :suffix
+    = f.text_field :suffix, :disabled => !worker.new_record?
+    .explanation= t(".suffix_explanation")
+
+  .form-field
+    = f.label :password
+    = f.text_field :password
+    .explanation= t(".password_explanation")
+
+  .form-field
+    = f.submit t(".submit"), :class => 'submit'

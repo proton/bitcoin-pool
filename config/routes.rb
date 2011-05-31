@@ -1,8 +1,14 @@
 BitcoinPool::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => "registrations"
+  }
   
-  resource :user, :only => [:edit, :update], :controller => "users" do
-    root :to => "informations#welcome"
+  resource :user, :only => [:edit, :update] do
+    resources :workers
+  end
+  
+  namespace :user do
+    root :to => "users#show"
   end
   
   root :to => "informations#welcome"

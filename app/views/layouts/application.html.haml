@@ -14,7 +14,7 @@
 
   %body{ :class => [request[:controller], "#{request[:controller]}-#{request[:action]}"] }
     #content
-      %h1#main-title= link_to(content_tag(:span, t(:title)), root_path)
+      %h1#main-title= link_to(content_tag(:span, t(:title)), user_signed_in? ? user_root_path : root_path)
 
       = render :partial => 'layouts/statistics'
 

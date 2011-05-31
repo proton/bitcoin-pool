@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base  
   devise :database_authenticatable,
     :confirmable,
     :registerable,
@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
     :rememberable,
     :trackable,
     :validatable
+  
+  has_many :workers,
+    :dependent => :destroy
   
   validates :nick,
     :presence => true,

@@ -9,7 +9,7 @@ en:
 
   layouts:
     application:
-      footer: Powered by bitcoin-pool platform
+      footer: Powered by the bitcoin-pool platform
       
     statistics:
       hashrate: Hashrate
@@ -54,6 +54,26 @@ en:
       error:
         one: An error prevent your account from being saved
         other: %{count} errors prevented your account from being saved
-      if_password_reset: Use if you want to change your password
+      if_password_reset: Only if you want to change your password
       current_password_explanation: Needed to confirm your changes
+    show:
+      my_profile: My profile
+      statistics: Statistics
+      
+  workers:
+    list:
+      no_workers: No workers were found
+      add: Add a worker
+      confirm: Are you sure you want to delete this worker ?
+      na: N/A
+    form:
+      error:
+        one: An error prevent this worker from being registered
+        other: %{count} errors prevented this worker from being registered
+      submit: Save worker
+      suffix_explanation: The worker login will be [username].[suffix]
+      password_explanation: This is used by your remote miner
+    edit:
+      edit: Editing worker
+
 
