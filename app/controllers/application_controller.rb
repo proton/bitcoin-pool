@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :ensure_utc_timestamps,
-    :get_stats,
-    :authenticate_user!
+  before_filter :authenticate_user!,
+    :ensure_utc_timestamps,
+    :get_stats
+    
 
   private
 

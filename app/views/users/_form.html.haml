@@ -12,10 +12,17 @@
   .form-field
     = f.label :password
     = f.password_field :password
+    .explanation= t(".if_password_reset")
 
   .form-field
     = f.label :password_confirmation
     = f.password_field :password_confirmation
+    .explanation= t(".if_password_reset")
+
+  .form-field
+    = f.label :current_password
+    = f.password_field :current_password
+    .explanation= t(".current_password_explanation")
 
   .form-field
     = f.submit t(".submit"), :class => 'submit'

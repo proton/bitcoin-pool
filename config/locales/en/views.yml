@@ -54,4 +54,6 @@ en:
       error:
         one: An error prevent your account from being saved
         other: %{count} errors prevented your account from being saved
+      if_password_reset: Use if you want to change your password
+      current_password_explanation: Needed to confirm your changes
 

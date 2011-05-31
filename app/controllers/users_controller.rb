@@ -12,7 +12,11 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
-  
+
+  def show
+    @user = current_user
+  end
+
   private
   
   def set_user
