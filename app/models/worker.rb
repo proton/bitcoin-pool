@@ -40,7 +40,7 @@ class Worker < ActiveRecord::Base
   end
 
   def hashrate
-    "%.2f" % (0.007158278826666666 * shares.fresh.count)
+    7158278.826666666 * shares.fresh.count
   end
 
   def self.recently_active(limit = DateTime.now.advance(:minutes => -10))

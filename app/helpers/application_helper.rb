@@ -15,4 +15,16 @@ module ApplicationHelper
     out << content_tag(:br)
     out
   end
+
+  def format_hashrate(hashrate)
+    number_to_human hashrate, :units => {
+      :unit => "H/s",
+      :thousand => "Kh/s",
+      :million => "Mh/s",
+      :billion => "Gh/s",
+      :trillion => "Th/s",
+      :quadrillion => "Ph/s"
+    }
+
+  end
 end

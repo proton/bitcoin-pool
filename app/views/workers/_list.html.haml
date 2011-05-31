@@ -19,7 +19,7 @@
         %td= worker.password
         %td= worker.found_blocks
         %td= worker.current_shares
-        %td= worker.hashrate
+        %td= format_hashrate(worker.hashrate)
         %td= worker.last_share_at ? l(worker.last_share_at) : t(".na")
         %td= stale_shares_for(worker)
         %td.auto-sized= link_to(image_tag("details.png"), edit_user_worker_path(worker))

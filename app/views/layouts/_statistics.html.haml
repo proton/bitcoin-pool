@@ -1,7 +1,7 @@
 %table.statistics
   %tr
     %th= t(".hashrate")
-    %td= "#{@hashrate} Gh/s"
+    %td= format_hashrate(@hashrate)
   %tr
     %th= t(".workers")
     %td= @active_workers

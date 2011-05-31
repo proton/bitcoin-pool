@@ -12,10 +12,10 @@ class Share < ActiveRecord::Base
   end
 
   # Returns hashrate averaged on last 10 minutes, at diff. 1 each share
-  # represents 2^32 hashes.
+  # represents 2^32 hashes
   def self.hashrate
-    # => (fresh.count.to_f * 2**32 / (10 * 60)) / (10 ** 9)
-    0.007158278826666666 * fresh.count
+    # => (fresh.count.to_f * 2**32 / (10 * 60))
+    7158278.826666666 * fresh.count
   end
   
   def self.stale
