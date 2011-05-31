@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   # Sets variables with the global pool hashrate averaged on the last 10 minutes
   # and the number of active workers
   def get_stats
-    @hashrate = "%.2f" % Share.hashrate.to_s
+    @hashrate = "%.2f" % Share.hashrate
     @active_workers = Worker.recently_active
   end
 

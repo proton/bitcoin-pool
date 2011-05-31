@@ -5,6 +5,8 @@ class Worker < ActiveRecord::Base
     :current_shares, 
     :last_share_at, 
     :found_blocks
+
+  attr_reader :hashrate
   
   has_many :shares,
     :foreign_key => "username",
@@ -36,7 +38,11 @@ class Worker < ActiveRecord::Base
   def stale_shares
     shares.stale.count
   end
-  
+
+  def hashrate
+    "%.2f" % (0.007158278826666666 * shares.fresh.count)
+  end
+
   def self.recently_active(limit = DateTime.now.advance(:minutes => -10))
     where("EXISTS (SELECT * FROM `shares` WHERE `shares`.`username` = `workers`.`username` AND `shares`.`created_at` > ?)", limit).count
   end

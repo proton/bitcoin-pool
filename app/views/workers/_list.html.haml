@@ -6,6 +6,7 @@
     %th= t("activerecord.attributes.worker.password")
     %th= t("activerecord.attributes.worker.found_blocks")
     %th= t("activerecord.attributes.worker.current_shares")
+    %th= t("activerecord.attributes.worker.hashrate")
     %th= t("activerecord.attributes.worker.last_share_at")
     %th= t("activerecord.attributes.worker.stale_shares")
     %th.auto-sized
@@ -18,6 +19,7 @@
         %td= worker.password
         %td= worker.found_blocks
         %td= worker.current_shares
+        %td= worker.hashrate
         %td= worker.last_share_at ? l(worker.last_share_at) : t(".na")
         %td= stale_shares_for(worker)
         %td.auto-sized= link_to(image_tag("details.png"), edit_user_worker_path(worker))
