@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   
   has_many :workers,
     :dependent => :destroy
+
+  has_many :blocks,
+    :through => :workers
   
   validates :nick,
     :presence => true,

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528185401) do
+ActiveRecord::Schema.define(:version => 20110531224544) do
+
+  create_table "blocks", :force => true do |t|
+    t.integer  "number"
+    t.text     "hash",                         :null => false
+    t.datetime "found_at",                     :null => false
+    t.integer  "worker_id"
+    t.integer  "confirmations", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "blocks", ["hash"], :name => "hash_idx", :unique => true, :length => {"hash"=>"256"}
 
   create_table "shares", :force => true do |t|
     t.text      "rem_host",        :null => false

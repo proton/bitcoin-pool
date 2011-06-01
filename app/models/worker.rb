@@ -1,6 +1,9 @@
 class Worker < ActiveRecord::Base
   belongs_to :user
-  
+
+  has_many :blocks,
+    :dependent => :nullify
+
   attr_accessor :suffix, 
     :current_shares, 
     :last_share_at, 
