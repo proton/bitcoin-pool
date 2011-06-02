@@ -76,4 +76,8 @@ en:
     edit:
       edit: Editing worker
 
+  blocks:
+    list:
+      no_blocks: No blocks generated yet...
+      confirmed: Confirmed
 

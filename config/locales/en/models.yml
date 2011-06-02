@@ -8,7 +8,11 @@ en:
       worker:
         one: Worker
         other: Workers
-      
+
+      block:
+        one: Block
+        other: Blocks
+
     attributes:
       user:
         email: E-mail
@@ -23,3 +27,10 @@ en:
         suffix: Login suffix
         stale_shares: Stale
         hashrate: Hashrate
+
+      block:
+        checksum: Hash
+        found_at: Found at
+        generated: Generated BTC
+        worker: Worker
+        confirmations: Confirmations

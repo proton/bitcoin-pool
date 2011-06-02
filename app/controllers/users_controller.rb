@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @blocks = Block.all
   end
 
   private

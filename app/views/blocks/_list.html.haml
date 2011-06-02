@@ -1,0 +1,19 @@
+%table.default
+  %tr
+    %th= t("activerecord.attributes.block.found_at")
+    %th= t("activerecord.attributes.block.checksum")
+    %th= t("activerecord.attributes.block.generated")
+    %th= t("activerecord.attributes.block.worker")
+    %th= t("activerecord.attributes.block.confirmations")
+
+  - unless blocks.blank?
+    - blocks.each do |block|
+      %tr{ :class => cycle('even', 'odd') }
+        %td= time_ago_in_words(block.found_at)
+        %td= hash_string_for(block.checksum)
+        %td.fixed= "%2.4f" % block.generated.to_s
+        %td= block.worker.username
+        %td= confirmation_string_for(block.confirmations, t(".confirmed"))
+
+  - else
+    = render :partial => 'layouts/no_data', :locals => { :message => t('.no_blocks') }

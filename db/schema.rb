@@ -14,15 +14,16 @@ ActiveRecord::Schema.define(:version => 20110531224544) do
 
   create_table "blocks", :force => true do |t|
     t.integer  "number"
-    t.text     "hash",                         :null => false
-    t.datetime "found_at",                     :null => false
+    t.text     "checksum",                                                      :null => false
+    t.datetime "found_at",                                                      :null => false
+    t.decimal  "generated",     :precision => 16, :scale => 8, :default => 0.0, :null => false
     t.integer  "worker_id"
-    t.integer  "confirmations", :default => 0
+    t.integer  "confirmations",                                :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "blocks", ["hash"], :name => "hash_idx", :unique => true, :length => {"hash"=>"256"}
+  add_index "blocks", ["checksum"], :name => "checksum_idx", :unique => true, :length => {"checksum"=>"256"}
 
   create_table "shares", :force => true do |t|
     t.text      "rem_host",        :null => false

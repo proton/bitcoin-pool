@@ -17,6 +17,8 @@ class BlockHeader
     :merkle_root,
     :bits
 
+  attr_reader :hash
+
   # Initialize block header from a raw pool solution
   def initialize(raw)
     self.raw = raw
@@ -51,21 +53,9 @@ class BlockHeader
     @nonce ||= @raw[152, 8].hex
   end
 
-  # Reverses a string using chunks of 8 chars (4 hex bytes)
-  def word_reverse(str)
-    res = []
-
-    while str.length > 0 do
-      res << str[-8, 8]
-      str = str[0, str.length - 8]
-    end
-
-    res.join
-  end
-
   # Computes a block hash from the block header fields
-  def block_hash
-    byte_reverse Digest::SHA2.hexdigest(Digest::SHA2.digest(hex2bin(hashable_string)))
+  def hash
+    @hash ||= byte_reverse Digest::SHA2.hexdigest(Digest::SHA2.digest(hex2bin(hashable_string)))
   end
 
   private
@@ -94,5 +84,17 @@ class BlockHeader
     # Takes a hex string and reverses all bytes to switch endianness
     def byte_reverse(str)
       bin2hex(hex2bin(str).reverse)
+    end
+
+    # Reverses a string using chunks of 8 chars (4 hex bytes)
+    def word_reverse(str)
+      res = []
+
+      while str.length > 0 do
+        res << str[-8, 8]
+        str = str[0, str.length - 8]
+      end
+
+      res.join
     end
 end

@@ -10,6 +10,9 @@ BitcoinPool::Application.routes.draw do
   namespace :user do
     root :to => "users#show"
   end
+
+
+  resources :blocks, :only => [:index]
   
   root :to => "informations#welcome"
 end

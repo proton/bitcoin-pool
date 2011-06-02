@@ -1,6 +1,7 @@
 %h1= t(".my_profile")
 
 %h2= t(".statistics")
+= render :partial => 'blocks/list', :locals => { :blocks => @blocks }
 
 %h2= t("activerecord.models.worker.other")
 = render :partial => 'workers/list', :locals => { :workers => @user.workers }

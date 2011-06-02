@@ -559,8 +559,8 @@ div.flash div.alert, div.flash div.error {
   color: red;
 }
 
-/* Bitcoin addresses */
-.bitcoin-address {
+/* Bitcoin addresses, block hashes */
+.bitcoin-address, .hash{
   font-family: Lucidatypewriter, monospace;
   font-weight: normal;
 }
