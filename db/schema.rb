@@ -10,20 +10,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110531224544) do
+ActiveRecord::Schema.define(:version => 20110603145507) do
 
   create_table "blocks", :force => true do |t|
     t.integer  "number"
-    t.text     "checksum",                                                      :null => false
+    t.string   "checksum",                                                      :null => false
     t.datetime "found_at",                                                      :null => false
     t.decimal  "generated",     :precision => 16, :scale => 8, :default => 0.0, :null => false
-    t.integer  "worker_id"
+    t.integer  "share_id"
     t.integer  "confirmations",                                :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "pps"
   end
 
-  add_index "blocks", ["checksum"], :name => "checksum_idx", :unique => true, :length => {"checksum"=>"256"}
+  add_index "blocks", ["checksum"], :name => "checksum_idx", :unique => true
+
+  create_table "contributions", :force => true do |t|
+    t.integer  "block_id"
+    t.integer  "worker_id"
+    t.decimal  "score",       :precision => 16, :scale => 8, :default => 0.0, :null => false
+    t.boolean  "found_block"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "shares", :force => true do |t|
     t.text      "rem_host",        :null => false
@@ -38,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20110531224544) do
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "password_salt"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -64,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20110531224544) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "pps"
   end
 
 end

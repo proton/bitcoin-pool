@@ -27,6 +27,8 @@ en:
         suffix: Login suffix
         stale_shares: Stale
         hashrate: Hashrate
+        pps: Pay-per-share
+        type: Type
 
       block:
         checksum: Hash

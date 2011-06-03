@@ -18,6 +18,10 @@ class WorkersController < ApplicationController
   
   def update
     @worker = current_user.workers.find(params[:id])
+
+    # It shouldn't be possible to change the worker type after creation
+    params[:worker].delete(:pps)
+    
     perform_update!
   end
   

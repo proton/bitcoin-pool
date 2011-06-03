@@ -1,11 +1,17 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+share1:
+  rem_host: 0.0.0.0
+  username: somechick.w1
+  our_result: Y
+  upstream_result: Y
+  reason:
+  solution: 0000000150c549978a44e3ef671a4ed3f5b922195ebde0fbbccfdb5900e6827000000000c8a03dfb42fa04d47e9fbfd3e6afcb3d0df2b516eb86f4e64d09fe53cc397b6c4de61f4c1c069652a228e13d000000800000000000000000000000000000000000000000000000000000000000000000000000000000000080020000
+  created_at: <%= 10.seconds.ago %>
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+share2:
+  rem_host: 0.0.0.0
+  username: somechick.w1
+  our_result: Y
+  upstream_result:
+  reason: stale
+  solution: 0000000150c549978a44e3ef671a4ed3f5b922195ebde0fbbccfdb5900e6827000000000c8a03dfb42fa04d47e9fbfd3e6afcb3d0df2b516eb86f4e64d09fe53cc397b6c4de61f4c1c069652a228e13d000000800000000000000000000000000000000000000000000000000000000000000000000000000000000080020000
+  created_at: <%= 15.seconds.ago %>

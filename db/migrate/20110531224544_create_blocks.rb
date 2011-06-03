@@ -3,9 +3,8 @@ class CreateBlocks < ActiveRecord::Migration
     create_table :blocks do |t|
       t.integer :number
       
-      t.text :checksum,
-        :null => false,
-        :length => 256
+      t.string :checksum,
+        :null => false
 
       t.datetime  :found_at,
         :null => false
@@ -16,7 +15,7 @@ class CreateBlocks < ActiveRecord::Migration
         :scale => 8,
         :default => 0
 
-      t.integer :worker_id
+      t.integer :share_id
 
       t.integer :confirmations,
         :default => 0
@@ -24,7 +23,7 @@ class CreateBlocks < ActiveRecord::Migration
       t.timestamps
     end
 
-    execute 'ALTER TABLE blocks ADD UNIQUE INDEX checksum_idx (checksum(256))'
+    execute 'ALTER TABLE blocks ADD UNIQUE INDEX checksum_idx (checksum(255))'
   end
 
   def self.down

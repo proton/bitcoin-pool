@@ -4,6 +4,7 @@
   %tr
     %th= t("activerecord.attributes.worker.username")
     %th= t("activerecord.attributes.worker.password")
+    %th= t("activerecord.attributes.worker.type")
     %th= t("activerecord.attributes.worker.found_blocks")
     %th= t("activerecord.attributes.worker.current_shares")
     %th= t("activerecord.attributes.worker.hashrate")
@@ -17,6 +18,7 @@
       %tr{ :class => cycle('even', 'odd') }
         %td= worker.username
         %td= worker.password
+        %td= worker.pps ? t(".pps") : t(".normal")
         %td= worker.found_blocks
         %td= worker.current_shares
         %td= format_hashrate(worker.hashrate)

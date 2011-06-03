@@ -12,4 +12,9 @@
     .explanation= t(".password_explanation")
 
   .form-field
+    = f.label :pps
+    = f.check_box :pps, :class => "checkbox", :disabled => !worker.new_record?
+    .explanation= t(".pps_explanation")
+
+  .form-field
     = f.submit t(".submit"), :class => 'submit'

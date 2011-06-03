@@ -66,6 +66,8 @@ en:
       add: Add a worker
       confirm: Are you sure you want to delete this worker ?
       na: N/A
+      pps: Pay-per-share
+      normal: Normal
     form:
       error:
         one: An error prevent this worker from being registered
@@ -73,6 +75,7 @@ en:
       submit: Save worker
       suffix_explanation: The worker login will be [username].[suffix]
       password_explanation: This is used by your remote miner
+      pps_explanation: Get a fixed payment for each submitted share
     edit:
       edit: Editing worker
 
