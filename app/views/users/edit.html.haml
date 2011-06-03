@@ -1,6 +1,4 @@
-%h1= t :account_details_title
+%h1= t(".account_details")
 
-= render 'form'
+= render :partial => 'form', :locals => { :user => @user }
 
-%ul#devise-actions
-  %li= link_to t(:change_password), edit_password_path(@user)

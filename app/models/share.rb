@@ -26,4 +26,17 @@ class Share < ActiveRecord::Base
       where(:reason => "stale")
     end
   end
+
+  # Scope returning shares that are not submitted by PPS workers
+  def self.non_pps
+    where(:worker => { :pps => false })
+  end
+  
+  # Scope returning shares that are part of the round relevant to
+  # the block passed as argument
+  def self.relevant_to(block)
+    non_pps.
+      where("id <= ?", block.share.id).
+      where("id >= ?", block.first_share_of_round)
+  end
 end

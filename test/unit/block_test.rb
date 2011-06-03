@@ -8,10 +8,14 @@ class BlockTest < ActiveSupport::TestCase
   end
 
   test "should correctly set pps flag on blocks" do
-    flunk "implement me"
+    flunk
   end
 
   test "non_pps scope should report correctly" do
-    flunk "implement me"
+    flunk
+  end
+
+  test "should correctly report the first share relevant to a block" do
+    flunk
   end
 end

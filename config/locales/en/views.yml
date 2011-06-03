@@ -25,7 +25,7 @@ en:
     sessions:
       new:
         sign_in: Sign-in
-        email: E-mail
+        account_explanation: E-mail or nickname
         
     shared:
       links:
@@ -54,11 +54,21 @@ en:
       error:
         one: An error prevent your account from being saved
         other: %{count} errors prevented your account from being saved
-      if_password_reset: Only if you want to change your password
+      if_password_reset: Use only if you want to change your password
       current_password_explanation: Needed to confirm your changes
+      address_explanation: Necessary to receive payments
+      nick_explanation: Used to identify your workers
+      email_explanation: Used for notifications and password reset
+      password_confirmation: Confirm your new password
+
     show:
       my_profile: My profile
       statistics: Statistics
+    edit:
+      account_details: Edit your account
+      change_password: Change your password
+    new:
+      sign_up: Sign-up for an account
       
   workers:
     list:

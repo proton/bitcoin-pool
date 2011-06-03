@@ -1,28 +1,39 @@
-= form_for @user, ({ :url => user_registration_path } if @user.new_record? ) do |f|
-  = errors_for @user, :message => t(".error", :count => @user.errors.count)
+= form_for user, ({ :url => user_registration_path } if user.new_record? ) do |f|
+  = errors_for user, :message => t(".error", :count => user.errors.count)
 
   .form-field
     = f.label :email
-    = f.text_field :email, :disabled => !@user.new_record?
+    = f.text_field :email, :disabled => !user.new_record?
+    .explanation= t(".email_explanation")
 
   .form-field
     = f.label :nick
-    = f.text_field :nick, :disabled => !@user.new_record?
+    = f.text_field :nick, :disabled => !user.new_record?
+    .explanation= t(".nick_explanation")
 
   .form-field
-    = f.label :password
-    = f.password_field :password
-    .explanation= t(".if_password_reset")
+    = f.label :address
+    = f.text_field :address
+    .explanation= t(".address_explanation")
 
-  .form-field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-
-  - unless @user.new_record?
+  - unless user.new_record?
     .form-field
       = f.label :current_password
       = f.password_field :current_password
       .explanation= t(".current_password_explanation")
+
+  .form-field
+    = f.label :password
+    = f.password_field :password
+    - unless user.new_record?
+      .explanation= t(".if_password_reset")
+
+  .form-field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    - unless user.new_record?
+      .explanation= t(".password_confirmation")
+
 
   .form-field
     = f.submit t(".submit"), :class => 'submit'

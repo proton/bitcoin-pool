@@ -76,4 +76,9 @@ class Worker < ActiveRecord::Base
   def suffix=(str)
     self.username = "#{user.nick}.#{str}"
   end
+
+  # Useful for display in admin interface
+  def to_label
+    username
+  end
 end

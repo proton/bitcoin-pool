@@ -21,5 +21,6 @@ module BitcoinPool
 
     config.autoload_paths << File.join(config.root, "lib")
     config.autoload_paths << File.join(config.root, "lib", "bitcoin")
+    config.autoload_paths << File.join(config.root, "lib", "validators")
   end
 end

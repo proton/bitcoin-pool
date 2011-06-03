@@ -2,3 +2,5 @@ en:
   flash:
     worker_saved: Worker has been saved successfully
     worker_destroyed: Worker deleted successfully
+
+    account_edited: Account details updated successfully

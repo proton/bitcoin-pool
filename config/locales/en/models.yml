@@ -17,6 +17,8 @@ en:
       user:
         email: E-mail
         nick: Nickname
+        address: Bitcoin address
+        account: Account
         
       worker:
         username: Login

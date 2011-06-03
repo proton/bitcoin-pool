@@ -2,7 +2,8 @@ User.create!({
     :email => 'david@bitcoin-central.net' ,
     :nick => 'davout',
     :password => 'password',
-    :password_confirmation => 'password'
+    :password_confirmation => 'password',
+    :address => "1FXWhKPChEcUnSEoFQ3DGzxKe44MDbatz"
   }
 )
 

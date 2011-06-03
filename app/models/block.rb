@@ -33,6 +33,21 @@ class Block < ActiveRecord::Base
     where(:pps => false)
   end
 
+  # Returns the ID of the first share in the round
+  def first_share_of_round_id
+    previous_round_last_share_id = Share.
+      where("id < ?", block.share.id).
+      non_pps.
+      where("id IN (SELECT `blocks`.`share_id` FROM `blocks`)").
+      maximum(:id)
+
+    if previous_round_last_share_id
+      Share.non_pps.where("id > ,", previous_round_last_share_id).minimum(:id)
+    else
+      Share.non_pps.minimum(:id)
+    end
+  end
+
   # Records new blocks based on shares that the upstream bitcoin client
   # recognized as a valid block solution
   def self.fetch_new
@@ -78,16 +93,35 @@ class Block < ActiveRecord::Base
     # # Create contributions based upon submitted shares
     # # Record found_block flag correctly
 
-    with_exclusive_scope do
-      Block.
-        without_contributions.
-        non_pps.
-        all.
-        each do |block|
+    Block.
+      without_contributions.
+      non_pps.
+      all.
+      each do |block|
 
-        
+      # Change this to account differently for shares, "1" will count 1 for each
+      # share.
+      scoring_function = "1"
 
+      # Another possibility for a scoring function which makes old shares less
+      # valuable
+      # scoring_function = (1.0 / (UNIX_TIMESTAMP(CURRENT_TIMESTAMP) - UNIX_TIMESTAMP(created_at) + 10))
+
+      Share.relevant_to(block).
+        select("username").
+        select("SUM(#{scoring_function}) AS score").
+        select("MAX(upstream_result) AS found_block").
+        all.each do |contribution|
+
+        Contribution.create!(
+          :block => block,
+          :worker => Worker.find_by_username(contribution['username']),
+          :found_block => (contribution['found_block'] == "Y"),
+          :score => contribution['score']
+        )
       end
+
+      Share.relevant_to(block).delete_all
     end
   end
 end

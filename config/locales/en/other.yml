@@ -1,2 +1,5 @@
 en:
   title: The Bitcoin Pool (it's open!)
+
+  errors:
+    invalid: is invalid

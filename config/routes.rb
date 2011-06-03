@@ -11,6 +11,10 @@ BitcoinPool::Application.routes.draw do
     root :to => "users#show"
   end
 
+  namespace :admin do
+    resources(:users) { as_routes }
+    resources(:workers) { as_routes }
+  end
 
   resources :blocks, :only => [:index]
   

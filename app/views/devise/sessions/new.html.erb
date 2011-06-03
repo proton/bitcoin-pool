@@ -2,8 +2,11 @@
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div class="form-field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>   
+    <%= f.label :account %>
+    <%= f.text_field :account %>
+    <div class="explanation">
+      <%= t(".account_explanation") %>
+    </div>
   </div>
 
   <div class="form-field">

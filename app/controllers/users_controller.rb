@@ -5,9 +5,16 @@ class UsersController < ApplicationController
   end
   
   def update
-    if @user.update_attributes(params[:user])
+    # This flag is *not* supposed to be toggled here
+    params[:user].delete(:admin)
+
+    if @user.update_with_password(params[:user])
+
+      # Necessary because a password change signs you out
+      sign_in(@user, :bypass => true)
+
       redirect_to edit_user_path,
-        :notice => "io"
+        :notice => t("flash.account_edited")
     else
       render :action => :edit
     end
