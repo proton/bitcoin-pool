@@ -13,8 +13,9 @@ BitcoinPool::Application.routes.draw do
   end
 
   namespace :admin do
-    resources(:users) { as_routes }
-    resources(:workers) { as_routes }
+    root :to => "application#main"
+
+    %w{users workers share_prices settings}.each { |r| resources(r) { as_routes }}
   end
 
   resources :blocks, :only => [:index]

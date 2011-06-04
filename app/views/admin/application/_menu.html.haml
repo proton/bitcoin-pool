@@ -1,0 +1,5 @@
+%ul#menu
+  - %w{user worker setting share_price}.each do |m|
+    %li= link_to(t("activerecord.models.#{m}.other"), send(:"admin_#{m}s_path"))
+    
+  

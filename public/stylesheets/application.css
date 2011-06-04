@@ -150,7 +150,7 @@ ul#menu {
 }
 
 ul#menu > li {
-  width: 9em;
+  width: 10em;
   float: left;
   height: 2.5em;
   list-style-type: none;
@@ -160,11 +160,6 @@ ul#menu > li {
   border-top: 1px solid white;
   border-right: 1px solid white;
   border-left: 1px solid white;
-}
-
-ul#menu > li:hover {
-  border: 1px solid #6E0701;
-  border-bottom: 1px solid white;
 }
 
 ul#menu > li > a, ul#menu > li > ul > li > a {
@@ -178,44 +173,10 @@ ul#menu > li > a, ul#menu > li > ul > li > a {
   top: 2px;
 }
 
-ul#menu > li > ul > li > a {
-  font-size: 100%;
-}
-
-ul#menu > li > a span, ul#menu > li > ul > li > a span {
+ul#menu > li > a { 
   position: relative;
   top: 7px;
   left: 6px;
-}
-
-ul#menu > li > ul {
-  display: none;
-  border: 1px solid #6E0701;
-  border-top: none;
-  width: 150%;
-  margin: 0;
-  position: relative;
-  left: -1px;
-  top: 1px;
-  border-bottom: 1px solid #6E0701;
-  background: white;
-}
-
-ul#menu > li > ul > li {
-  width: 100%;
-  margin: 0;
-  height: 2.5em;
-  list-style-type: none;
-  list-style-image: none;
-}
-
-ul#menu > li > ul > li:hover {
-  background: #FFEEEE;
-}
-
-ul#menu > li:hover > ul {
-  display: block;
-  z-index: 10;
 }
 
 /* Forms */

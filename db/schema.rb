@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603232710) do
+ActiveRecord::Schema.define(:version => 20110604124916) do
 
   create_table "blocks", :force => true do |t|
     t.integer  "number"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110603232710) do
     t.boolean  "found_block"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "amount",      :precision => 16, :scale => 8, :default => 0.0
   end
 
   create_table "payments", :force => true do |t|
@@ -40,6 +41,21 @@ ActiveRecord::Schema.define(:version => 20110603232710) do
     t.integer  "user_id",                                                        :null => false
     t.string   "address",                                                        :null => false
     t.string   "transaction_id",                                                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "settings", :force => true do |t|
+    t.string   "key",        :null => false
+    t.string   "value",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "share_prices", :force => true do |t|
+    t.datetime "starts_at",                                                  :null => false
+    t.datetime "ends_at",                                                    :null => false
+    t.decimal  "price",      :precision => 16, :scale => 8, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,12 +71,12 @@ ActiveRecord::Schema.define(:version => 20110603232710) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                                                                :default => "",  :null => false
+    t.string   "encrypted_password",     :limit => 128,                                :default => "",  :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",                                                        :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -73,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20110603232710) do
     t.string   "nick"
     t.string   "address"
     t.boolean  "admin"
+    t.decimal  "payment_treshold",                      :precision => 16, :scale => 8, :default => 0.0
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

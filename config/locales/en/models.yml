@@ -17,6 +17,14 @@ en:
         one: Payment
         other: Payments
 
+      share_price:
+        one: Share reward
+        other: Share rewards
+
+      setting:
+        one: Setting
+        other: Settings
+
     attributes:
       user:
         email: E-mail
@@ -48,3 +56,14 @@ en:
         amount: Amount
         address: Bitcoin address
         created_at: Paid at
+
+      share_price:
+        starts_at: Starts at
+        ends_at: Ends at
+        price: Reward
+
+      setting:
+        label: Label
+        key: Key
+        value: Value
+        

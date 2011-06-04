@@ -42,9 +42,20 @@ class User < ActiveRecord::Base
     nick
   end
 
-  # Balance available to this user
+  # Total balance available to this user
+  def total_balance(confirmed = true)
+     balance(confirmed) + pps_balance - payments.sum(:amount)
+  end
+
+  # Pay-per-share balance
+  def pps_balance
+    # TODO : Implement me
+    # ==> Make this an attribute
+  end
+
+  # Balance from regular pooled mining
   def balance(confirmed = true)
-    Contribution.confirmed(confirmed).sum(:amount) - payments.sum(:amount)
+    Contribution.confirmed(confirmed).sum(:amount)
   end
 
   # Pays users if necessary

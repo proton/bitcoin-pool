@@ -20,6 +20,9 @@
 
       = render :partial => 'layouts/user_informations'
 
+      - if current_user.admin?
+        = render :partial => 'admin/application/menu'
+
       = render :partial => 'layouts/flash', :object => flash
 
       #right-content

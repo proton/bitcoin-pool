@@ -18,6 +18,10 @@ class Block < ActiveRecord::Base
     :presence => true,
     :uniqueness => true
 
+  validates :generated,
+    :presence => true,
+    :inclusion => { :in => [1..21000000]}
+
   # Whether the block is actually confirmed and its coins have matured
   def confirmed?
     confirmations >= 120
@@ -46,6 +50,11 @@ class Block < ActiveRecord::Base
     else
       Share.non_pps.minimum(:id)
     end
+  end
+
+  # Splits the generated coins among the contributors
+  def split_the_money!
+    to_split = generated
   end
 
   # Records new blocks based on shares that the upstream bitcoin client
@@ -122,6 +131,8 @@ class Block < ActiveRecord::Base
       end
 
       Share.relevant_to(block).delete_all
+
+      block.split_the_money!
     end
   end
 end
