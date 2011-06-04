@@ -3,7 +3,7 @@ module BlocksHelper
     (confirmations >= 120) ? msg : confirmations
   end
 
-  def hash_string_for(checksum)
+  def hash_string_for_block(checksum)
     content_tag :a,
       :title => checksum,
       :target => "_blank",

@@ -5,6 +5,7 @@ BitcoinPool::Application.routes.draw do
   
   resource :user, :only => [:edit, :update, :show] do
     resources :workers
+    resources :payments, :only => [:index, :show]
   end
   
   namespace :user do

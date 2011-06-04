@@ -32,7 +32,11 @@ class WorkersController < ApplicationController
     redirect_to user_root_path,
         :notice => t("flash.worker_destroyed")
   end
-  
+
+  def show
+    @worker = current_user.workers.find(params[:id])
+  end
+
   private
   
   def perform_update!

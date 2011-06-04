@@ -1,0 +1,17 @@
+%table.default
+  %tr
+    %th= t("activerecord.attributes.payment.amount")
+    %th= t("activerecord.attributes.payment.address")
+    %th= t("activerecord.attributes.payment.transaction_id")
+    %th= t("activerecord.attributes.payment.created_at")
+
+  - unless payments.blank?
+    - payments.each do |payment|
+      %tr{ :class => cycle('even', 'odd') }
+        %td.fixed= "%.2f" % payment.amount
+        %td.fixed= payment.address
+        %td= hash_string_for_transaction(transaction_id)
+        %td= l(payment.created_at)
+
+  - else
+    = render :partial => 'layouts/no_data', :locals => { :message => t('.no_payments') }

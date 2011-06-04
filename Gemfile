@@ -6,7 +6,11 @@ gem 'mysql'
 gem 'capistrano'
 gem 'haml'
 gem 'devise'
-gem 'active_scaffold_vho'
 gem 'will_paginate'
 gem 'addressable'
 gem 'json'
+gem 'whenever'
+
+gem 'active_scaffold_vho',
+  :git => 'https://github.com/vhochstein/active_scaffold.git',
+  :branch => 'rails-3.0'

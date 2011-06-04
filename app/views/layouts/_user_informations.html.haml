@@ -1,7 +1,8 @@
 #user-information
   %p
     - if current_user
-      %p.identification= "#{t(".signed_in_as")} #{link_to(current_user.nick, edit_user_path)} - #{link_to(t(".logout"), destroy_session_path(:user))}".html_safe
+      %p.identification
+        = "#{t(".signed_in_as")} #{link_to(current_user.nick, edit_user_path)} - #{link_to(t(".logout"), destroy_session_path(:user))}".html_safe
 
     - else
       = "#{link_to(t(".sign_up"), new_registration_path(:user))} | #{link_to(t(".sign_in"), new_session_path(:user))}".html_safe

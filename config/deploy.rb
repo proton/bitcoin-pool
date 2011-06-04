@@ -32,6 +32,11 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{release_path} && bundle exec whenever --update-crontab #{application}"
+  end
 end
 
 task :copy_production_configurations do
@@ -46,3 +51,5 @@ end
 
 after "deploy:update_code", :copy_production_configurations
 after :copy_production_configurations, :remove_config_ru
+after :remove_config_ru, "deploy:update_crontab"
+

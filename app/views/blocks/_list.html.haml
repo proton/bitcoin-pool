@@ -10,7 +10,7 @@
     - blocks.each do |block|
       %tr{ :class => cycle('even', 'odd') }
         %td= time_ago_in_words(block.found_at)
-        %td= hash_string_for(block.checksum)
+        %td= hash_string_for_block(block.checksum)
         %td.fixed= "%2.4f" % block.generated.to_s
         %td= block.worker.username
         %td= confirmation_string_for(block.confirmations, t(".confirmed"))

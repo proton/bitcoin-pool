@@ -6,7 +6,10 @@ class UsersController < ApplicationController
   
   def update
     # This flag is *not* supposed to be toggled here
-    params[:user].delete(:admin)
+    if params[:user].delete(:admin)
+      redirect_to user_root_path,
+        :alert => t("flash.dont_even") and return
+    end
 
     if @user.update_with_password(params[:user])
 

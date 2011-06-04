@@ -1,6 +1,17 @@
+GIT
+  remote: https://github.com/vhochstein/active_scaffold.git
+  revision: d6964bb2b444b820cd988d87493889ce0557729e
+  branch: rails-3.0
+  specs:
+    active_scaffold_vho (3.0.19)
+      rails (~> 3.0.0)
+      render_component_vho
+      verification
+
 GEM
   remote: http://rubygems.org/
   specs:
+    aaronh-chronic (0.3.9)
     abstract (1.0.0)
     actionmailer (3.0.7)
       actionpack (= 3.0.7)
@@ -15,10 +26,6 @@ GEM
       rack-mount (~> 0.6.14)
       rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
-    active_scaffold_vho (3.0.19)
-      rails (~> 3.0.0)
-      render_component_vho
-      verification
     activemodel (3.0.7)
       activesupport (= 3.0.7)
       builder (~> 2.1.2)
@@ -100,6 +107,9 @@ GEM
       activesupport (~> 3.0.0)
     warden (1.0.4)
       rack (>= 1.0)
+    whenever (0.6.7)
+      aaronh-chronic (>= 0.3.9)
+      activesupport (>= 2.3.4)
     will_paginate (2.3.15)
 
 PLATFORMS
@@ -107,7 +117,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  active_scaffold_vho
+  active_scaffold_vho!
   addressable
   capistrano
   devise
@@ -116,4 +126,5 @@ DEPENDENCIES
   mysql
   rails (= 3.0.7)
   rake (~> 0.8.7)
+  whenever
   will_paginate

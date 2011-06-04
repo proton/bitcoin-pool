@@ -3,6 +3,9 @@ class Payment < ActiveRecord::Base
 
   belongs_to :user
 
+  before_validation :perform_payment,
+    :on => :create
+
   validates :address,
     :presence => true,
     :bitcoin_address => true
@@ -11,5 +14,14 @@ class Payment < ActiveRecord::Base
     :presence => true
 
   validates :amount,
-    :presence => true
+    :presence => true,
+    :inclusion => { :in => [0.01..21000000] }
+
+  
+  private
+
+    # Generates the bitcoin payment
+    def perform_payment
+      self.transaction_id = Bitcoin::Client.new.send_to_address(address, amount)
+    end
 end

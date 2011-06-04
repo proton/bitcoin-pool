@@ -13,6 +13,10 @@ en:
         one: Block
         other: Blocks
 
+      payment:
+        one: Payment
+        other: Payments
+
     attributes:
       user:
         email: E-mail
@@ -38,3 +42,9 @@ en:
         generated: Generated BTC
         worker: Worker
         confirmations: Confirmations
+
+      payment:
+        transaction_id: Transaction ID
+        amount: Amount
+        address: Bitcoin address
+        created_at: Paid at

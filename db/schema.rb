@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603223750) do
+ActiveRecord::Schema.define(:version => 20110603232710) do
 
   create_table "blocks", :force => true do |t|
     t.integer  "number"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(:version => 20110603223750) do
     t.integer  "worker_id"
     t.decimal  "score",       :precision => 16, :scale => 8, :default => 0.0, :null => false
     t.boolean  "found_block"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.decimal  "amount",         :precision => 16, :scale => 8, :default => 0.0, :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.string   "address",                                                        :null => false
+    t.string   "transaction_id",                                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -63,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20110603223750) do
     t.datetime "updated_at"
     t.string   "nick"
     t.string   "address"
+    t.boolean  "admin"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

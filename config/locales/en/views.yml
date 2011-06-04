@@ -62,8 +62,9 @@ en:
       password_confirmation: Confirm your new password
 
     show:
-      my_profile: My profile
+      my_profile: Dashboard
       statistics: Statistics
+      payments: Payments
     edit:
       account_details: Edit your account
       change_password: Change your password
@@ -88,9 +89,20 @@ en:
       pps_explanation: Get a fixed payment for each submitted share
     edit:
       edit: Editing worker
+    show:
+      details: Worker details
+      pps: Pay-per-share
+      normal: Normal
 
   blocks:
     list:
-      no_blocks: No blocks generated yet...
+      no_blocks: No blocks have been generated yet...
       confirmed: Confirmed
 
+  payments:
+    show:
+      details: Payment details
+    index:
+      title: Your payments
+    list:
+      no_payments: No payments have been made yet...

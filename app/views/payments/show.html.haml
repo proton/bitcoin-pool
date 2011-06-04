@@ -1,0 +1,19 @@
+%h1= t(".details")
+
+%table.default.payment-details
+  %tr
+    %th= t("activerecord.attributes.payment.amount")
+    %td.amount= @payment.amount
+
+  %tr
+    %th= t("activerecord.attributes.payment.address")
+    %td= @payment.address
+
+  %tr
+    %th= t("activerecord.attributes.payment.transaction_id")
+    %td.fixed= hash_string_for_transaction(@payment.transaction_id)
+
+  %tr
+    %th= t("activerecord.attributes.payment.created_at")
+    %td.fixed= l(@payment.created_at)
+

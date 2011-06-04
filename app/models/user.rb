@@ -20,11 +20,6 @@ class User < ActiveRecord::Base
   has_many :payments,
     :dependent => :destroy
 
-  # Blocks solved by this user
-  # TODO : Rework this accessor to go through contributions
-#  has_many :blocks,
-#    :through => :workers
-
   # A user must have a nick which will be used to build worker usernames
   validates :nick,
     :presence => true,
@@ -37,9 +32,32 @@ class User < ActiveRecord::Base
     :bitcoin_address => true,
     :uniqueness => true
 
+  validates :payment_treshold,
+    :numericality => true,
+    :presence => true,
+    :inclusion => { :in => [0.0..21000000]}
+
   # Useful for display in admin interface
   def to_label
     nick
+  end
+
+  # Balance available to this user
+  def balance(confirmed = true)
+    Contribution.confirmed(confirmed).sum(:amount) - payments.sum(:amount)
+  end
+
+  # Pays users if necessary
+  def self.pay!
+    User.all.each do |user|
+      if user.balance >= user.threshold
+        user.payment.create!({
+            :amount => user.balance.truncate(:places => 2),
+            :address => user.address
+          }
+        )
+      end
+    end
   end
 
   protected
@@ -48,5 +66,5 @@ class User < ActiveRecord::Base
       conditions = warden_conditions.dup
       acct = conditions.delete(:account)
       where(conditions).where(["nick = :value OR email = :value", { :value => acct }]).first
-    end
+  end
 end
