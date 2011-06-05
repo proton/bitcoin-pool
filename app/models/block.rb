@@ -54,7 +54,11 @@ class Block < ActiveRecord::Base
 
   # Splits the generated coins among the contributors
   def split_the_money!
-    to_split = generated
+    total_contributed = contributions.sum(:score)
+
+    contributions.each do |c|
+      contribution.amount = (c.score / total_contributed) * (1.0 - Setting.get(:pooling_fee).to_f) * generated
+    end
   end
 
   # Records new blocks based on shares that the upstream bitcoin client
@@ -95,13 +99,9 @@ class Block < ActiveRecord::Base
 
   # Creates contributions based on submitted shares for each round, this
   # is where we calculate the exact rewards (for the normal case)
-  # We do not handle contributions for PPS blocks since we're already paying
-  # a fixed amount for these shares
+  # We do not handle contributions for PPS blocks here since we're already
+  # paying a fixed amount for these shares
   def self.create_contributions
-    # For each block that has no contributions and is not pps?
-    # # Create contributions based upon submitted shares
-    # # Record found_block flag correctly
-
     Block.
       without_contributions.
       non_pps.
@@ -109,12 +109,8 @@ class Block < ActiveRecord::Base
       each do |block|
 
       # Change this to account differently for shares, "1" will count 1 for each
-      # share.
-      scoring_function = "1"
-
-      # Another possibility for a scoring function which makes old shares less
-      # valuable
-      # scoring_function = (1.0 / (UNIX_TIMESTAMP(CURRENT_TIMESTAMP) - UNIX_TIMESTAMP(created_at) + 10))
+      # share regardless of age (vulnerable to pool hopping!)
+      scoring_function = Setting.get(:scoring_function)
 
       Share.relevant_to(block).
         select("username").

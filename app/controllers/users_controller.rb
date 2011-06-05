@@ -1,16 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :set_user
-  
-  def edit
-  end
+  before_filter :set_user,
+    :remove_sensitive_fields
   
   def update
-    # This flag is *not* supposed to be toggled here
-    if params[:user].delete(:admin)
-      redirect_to user_root_path,
-        :alert => t("flash.dont_even") and return
-    end
-
     if @user.update_with_password(params[:user])
 
       # Necessary because a password change signs you out
@@ -27,9 +19,19 @@ class UsersController < ApplicationController
     @blocks = Block.all
   end
 
+
   private
   
-  def set_user
-    @user = current_user
-  end  
+    def set_user
+      @user = current_user
+    end
+
+    # Removes forged parameters from update requests, maybe we should also
+    # implement a big fat banhammer.
+    def remove_sensitive_fields
+      if params[:user] && [:admin, :pps_balance].any? { |p| params[:user].delete(p) }
+        redirect_to user_root_path,
+          :alert => t("flash.dont_even")
+      end
+    end
 end

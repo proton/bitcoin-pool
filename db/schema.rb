@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110604124916) do
+ActiveRecord::Schema.define(:version => 20110604152451) do
 
   create_table "blocks", :force => true do |t|
     t.integer  "number"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20110604124916) do
     t.string   "address"
     t.boolean  "admin"
     t.decimal  "payment_treshold",                      :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "price",                                 :precision => 16, :scale => 8, :default => 0.0
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

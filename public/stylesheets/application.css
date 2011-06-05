@@ -324,13 +324,14 @@ div#faq div.question {
 /* Tables */
 table.default {
   background: white;
-  width: 100%;
+  width: 100%;  
+  -moz-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 table.default tr {
   border-bottom: 1px solid #ffe5e5;
   border-top: 1px solid #ffe5e5;
-
 }
 
 table.default th {
@@ -391,13 +392,15 @@ table.worker-details tr th, table.payment-details tr th {
   text-align: right;
   padding-right: 1.5em;
   width: 15em;
-  border-right: 1px solid #6E0701;
+  border-left: 1px solid #6E0701;
 }
 
 table.worker-details tr td, table.worker-details tr td.amount,
 table.payment-details tr td, table.payment-details tr td.amount {
   text-align: left;
   padding-left: 1.5em;
+  border-right: 1px solid #6E0701;
+  border-left: 1px solid #6E0701;
 }
 
 /* Invoices */

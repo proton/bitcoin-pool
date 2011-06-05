@@ -81,4 +81,25 @@ class Worker < ActiveRecord::Base
   def to_label
     username
   end
+
+  # Converts submitted shares to bitcoin balance
+  def cash_out!
+    raise "Not available for this worker!" unless pps?
+
+    # We want to avoid any kind of concurrency problems so we're going to set in
+    # stone the range of shares we're cashing out (this is because we can't rely
+    # on transactions for MyISAM tables)
+    # This way we won't delete more shares than we pay the user for.
+    maximum_id = Share.where(:worker => self).maximum(:id)
+
+    amount = shares.where("id <= ?", maximum_id).
+      joins(:share_prices).
+      select("SUM(price) AS amount").
+      first['amount']
+
+    shares.unscoped.where("id <= ?", maximum_id).delete_all
+
+    user.pps_balance += amount
+    user.save!
+  end
 end

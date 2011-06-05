@@ -8,7 +8,7 @@ class WorkersController < ApplicationController
   end
   
   def edit
-    @worker = current_user.workers.find(params[:id])
+    get_worker
   end
   
   def create
@@ -17,7 +17,7 @@ class WorkersController < ApplicationController
   end
   
   def update
-    @worker = current_user.workers.find(params[:id])
+    get_worker
 
     # It shouldn't be possible to change the worker type after creation
     params[:worker].delete(:pps)
@@ -26,26 +26,36 @@ class WorkersController < ApplicationController
   end
   
   def destroy
-    @worker = current_user.workers.find(params[:id])
-    @worker.destroy
+    get_worker.destroy
     
     redirect_to user_root_path,
         :notice => t("flash.worker_destroyed")
   end
 
   def show
-    @worker = current_user.workers.find(params[:id])
+    get_worker
+  end
+
+  def cash_out
+    get_worker.cash_out!
+
+    redirect_to user_root_path,
+      :notice => t("flash.cashed_out")
   end
 
   private
   
-  def perform_update!
-    if @worker.update_attributes(params[:worker])
-      redirect_to user_root_path,
-        :notice => t("flash.worker_saved")
-    else
-      render :action => :new
+    def perform_update!
+      if @worker.update_attributes(params[:worker])
+        redirect_to user_root_path,
+          :notice => t("flash.worker_saved")
+      else
+        render :action => :new
+      end
     end
-  end
+
+    def get_worker
+      @worker = current_user.workers.find(params[:id])
+    end
 end
 

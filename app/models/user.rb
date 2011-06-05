@@ -47,12 +47,6 @@ class User < ActiveRecord::Base
      balance(confirmed) + pps_balance - payments.sum(:amount)
   end
 
-  # Pay-per-share balance
-  def pps_balance
-    # TODO : Implement me
-    # ==> Make this an attribute
-  end
-
   # Balance from regular pooled mining
   def balance(confirmed = true)
     Contribution.confirmed(confirmed).sum(:amount)
@@ -77,5 +71,5 @@ class User < ActiveRecord::Base
       conditions = warden_conditions.dup
       acct = conditions.delete(:account)
       where(conditions).where(["nick = :value OR email = :value", { :value => acct }]).first
-  end
+    end
 end

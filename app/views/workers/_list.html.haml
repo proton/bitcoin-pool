@@ -7,9 +7,8 @@
     %th= t("activerecord.attributes.worker.current_shares")
     %th= t("activerecord.attributes.worker.hashrate")
     %th= t("activerecord.attributes.worker.last_share_at")
-    %th.auto-sized
-    %th.auto-sized
-    %th.auto-sized
+    - 4.times do
+      %th.auto-sized
 
   - unless workers.blank?
     - workers.each do |worker|
@@ -19,6 +18,7 @@
         %td= worker.current_shares
         %td= format_hashrate(worker.hashrate)
         %td= worker.last_share_at ? l(worker.last_share_at, :format => :short) : "N/A"
+        %td.auto-sized= worker.pps? ? link_to(image_tag("dollar.png"), cash_out_user_worker_path(worker), :method => :post) : nil
         %td.auto-sized= link_to(image_tag("details.png"), user_worker_path(worker))
         %td.auto-sized= link_to(image_tag("edit.png"), edit_user_worker_path(worker))
         %td.auto-sized= link_to(image_tag("delete.png"), user_worker_path(worker), :class => "delete", :method => :delete, :confirm => t(".confirm") )

@@ -4,7 +4,12 @@ BitcoinPool::Application.routes.draw do
   }
   
   resource :user, :only => [:edit, :update, :show] do
-    resources :workers
+    resources :workers do
+      member do
+        post :cash_out
+      end
+    end
+
     resources :payments, :only => [:index, :show]
   end
   
