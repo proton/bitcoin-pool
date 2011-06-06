@@ -15,6 +15,10 @@ gem 'active_scaffold_vho',
   :git => 'https://github.com/vhochstein/active_scaffold.git',
   :branch => 'rails-3.0'
 
+gem 'exception_notification',
+  :git => "http://github.com/rails/exception_notification.git",
+  :require => 'exception_notifier'
+
 group :test do
   gem 'mocha', :require => false
   gem 'factory_girl_rails'

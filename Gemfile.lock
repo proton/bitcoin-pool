@@ -1,4 +1,10 @@
 GIT
+  remote: http://github.com/rails/exception_notification.git
+  revision: 192a49a02d63d28b23ed41cebadfedd490929cf1
+  specs:
+    exception_notification (1.0.0)
+
+GIT
   remote: https://github.com/vhochstein/active_scaffold.git
   revision: d6964bb2b444b820cd988d87493889ce0557729e
   branch: rails-3.0
@@ -126,6 +132,7 @@ DEPENDENCIES
   addressable
   capistrano
   devise
+  exception_notification!
   factory_girl_rails
   haml
   json

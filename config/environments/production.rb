@@ -46,7 +46,12 @@ BitcoinPool::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
+
+  config.middleware.use ::ExceptionNotifier,
+    :email_prefix => "[BP Exception] ",
+    :sender_address => %w{no-reply@pool.bitcoin-central.net},
+    :exception_recipients => %w{support@bitcoin-central.net}
+
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.default_url_options = { :host => 'pool.bitcoin-central.net' }
 end
