@@ -8,12 +8,12 @@
 
   - unless blocks.blank?
     - blocks.each do |block|
-      %tr{ :class => cycle('even', 'odd') }
+      %tr{ :class => [cycle('even', 'odd'), orphan_class_for(block)] }
         %td= time_ago_in_words(block.found_at)
         %td= hash_string_for_block(block.checksum)
         %td.fixed= "%2.4f" % block.generated.to_s
         %td= block.worker.username
-        %td= confirmation_string_for(block.confirmations, t(".confirmed"))
+        %td= confirmation_string_for(block, t(".confirmed"))
 
   - else
     = render :partial => 'layouts/no_data', :locals => { :message => t('.no_blocks') }

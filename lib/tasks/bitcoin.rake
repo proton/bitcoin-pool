@@ -3,6 +3,7 @@ namespace :bitcoin do
   task :update_blocks => :environment do
     Block.fetch_new
     Block.update_confirmations
+    Block.create_contributions
   end
 
   desc "Pushes payments to users once their balance is over their threshold"

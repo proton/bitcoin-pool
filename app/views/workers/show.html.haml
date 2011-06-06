@@ -1,35 +1,39 @@
 %h1= t(".details")
 
 %table.default.worker-details
-  %tr
+  %tr.even
     %th= t("activerecord.attributes.worker.username")
     %td= @worker.username
 
-  %tr
+  %tr.odd
     %th= t("activerecord.attributes.worker.password")
     %td= @worker.password
 
-  %tr
+  %tr.even
     %th= t("activerecord.attributes.worker.type")
     %td= @worker.pps ? t(".pps") : t(".normal")
 
-  %tr
+  %tr.odd
     %th= t("activerecord.attributes.worker.found_blocks")
     %td= @worker.found_blocks
 
-  %tr
+  %tr.even
     %th= t("activerecord.attributes.worker.current_shares")
     %td= @worker.current_shares
 
-  %tr
+  %tr.odd
     %th= t("activerecord.attributes.worker.hashrate")
     %td= format_hashrate(@worker.hashrate)
 
-  %tr
+  %tr.even
     %th= t("activerecord.attributes.worker.last_share_at")
     %td= @worker.last_share_at ? l(@worker.last_share_at, :format => :short) : "N/A"
 
-  %tr
+  %tr.odd
     %th= t("activerecord.attributes.worker.stale_shares")
     %td= stale_shares_for(@worker)
+
+  %tr.odd
+    %th= t("activerecord.attributes.worker.created_at")
+    %td= l(@worker.created_at, :format => :short)
 

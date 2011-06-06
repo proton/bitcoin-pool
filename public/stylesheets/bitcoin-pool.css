@@ -14,3 +14,31 @@ table.statistics th {
   padding-right: 1em;
   font-weight: bold;
 }
+
+tr.orphan {
+  background: #dddddd;
+}
+
+/* Balances table */
+table.balances {
+  font-size: 140%;
+}
+
+table.balances th {
+  width: 12em;
+  font-weight: normal;
+}
+
+table.balances td {
+  text-align: right;
+  font-weight: bold;
+}
+
+table.balances td.confirmed {
+  color: green;
+}
+
+table.balances td.unconfirmed {
+  color: orange;
+}
+

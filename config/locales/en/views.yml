@@ -63,8 +63,10 @@ en:
 
     show:
       my_profile: Dashboard
-      statistics: Statistics
+      latest_blocks: Latest blocks
       payments: Payments
+      confirmed_balance: Confirmed balance
+      unconfirmed_balance: Unconfirmed balance
     edit:
       account_details: Edit your account
       change_password: Change your password

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110604152451) do
+ActiveRecord::Schema.define(:version => 20110606200605) do
 
   create_table "blocks", :force => true do |t|
     t.integer  "number"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20110604152451) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "pps"
+    t.boolean  "orphan"
   end
 
   add_index "blocks", ["checksum"], :name => "checksum_idx", :unique => true

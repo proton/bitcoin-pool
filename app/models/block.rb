@@ -3,7 +3,8 @@ class Block < ActiveRecord::Base
   default_scope order("found_at DESC")
 
   # We need to track how much coins were generated for each block
-  before_validation :get_generated,
+  before_validation :set_orphan_flag,
+    :set_generated,
     :on => :create
 
   # A block has many contributions from different workers
@@ -28,10 +29,14 @@ class Block < ActiveRecord::Base
   validates :generated,
     :presence => true,
     :numericality => {
-    :greater_than_or_equal_to => 25
-  }
+      :greater_than_or_equal_to => 25
+    },
+    :unless => Proc.new { |b| b.orphan? }
 
   validates :worker,
+    :presence => true
+
+  validates :share,
     :presence => true
 
   # Whether the block is actually confirmed and its coins have matured
@@ -52,13 +57,13 @@ class Block < ActiveRecord::Base
   # Returns the ID of the first share in the round
   def first_share_of_round_id
     previous_round_last_share_id = Share.
-      where("id < ?", block.share.id).
+      where("`shares`.`id` < ?", share.id).
       pps(false).
-      where("id IN (SELECT `blocks`.`share_id` FROM `blocks`)").
+      where("`shares`.`id` IN (SELECT `blocks`.`share_id` FROM `blocks`)").
       maximum(:id)
 
     if previous_round_last_share_id
-      Share.pps(false).where("id > ,", previous_round_last_share_id).minimum(:id)
+      Share.pps(false).where("`shares`.`id` > ?", previous_round_last_share_id).minimum(:id)
     else
       Share.pps(false).minimum(:id)
     end
@@ -69,7 +74,7 @@ class Block < ActiveRecord::Base
     total_contributed = contributions.sum(:score)
 
     contributions.each do |c|
-      contribution.amount = (c.score / total_contributed) * (1.0 - Setting.get(:pooling_fee).to_f) * generated
+      c.update_attribute :amount, ((c.score / total_contributed) * (1.0 - Setting.get(:pooling_fee).to_f) * generated)
     end
   end
 
@@ -109,58 +114,78 @@ class Block < ActiveRecord::Base
       all.
       each do |block|
 
+      puts "Prowssessing block #{block.checksum}"
+
       # Change this to account differently for shares, "1" will count 1 for each
       # share regardless of age (vulnerable to pool hopping!)
       scoring_function = Setting.get(:scoring_function)
 
       Share.relevant_to(block).
-        select("username").
+        select("`workers`.`username`").
         select("SUM(#{scoring_function}) AS score").
-        select("MAX(upstream_result) AS found_block").
-        all.each do |contribution|
+        group("`workers`.`username`").
+        all.
+        each do |contribution|
 
         Contribution.create!(
           :block => block,
           :worker => Worker.find_by_username(contribution['username']),
-          :found_block => (contribution['found_block'] == "Y"),
           :score => contribution['score']
         )
       end
 
-      Share.relevant_to(block).delete_all
+      Share.delete_relevant_to!(block)
 
       block.split_the_money!
     end
   end
 
-
   def update_confirmations!
-    update_attribute!(:confirmations, get_generation_tx["confirmations"])
+    set_orphan_flag
+    set_generated
+    self.confirmations = get_generation_tx["confirmations"]
+    save!
   end
+
 
   protected
 
     # Sets the generated attribute with the amount of coins that were generated
     # in that block (including transaction fees)
-    def get_generated
-      tx = get_generation_tx
-      amount = 0
-      
-      if tx["details"] && (tx["details"][0]["category"] == "immature")
-        amount = tx["details"][0]["amount"]
+    def set_generated
+      if orphan?
+        self.generated = 0
       else
-        amount = tx["amount"]
+        tx = get_generation_tx
+        amount = 0
+
+        if tx["details"] && (tx["details"][0]["category"] == "immature")
+          amount = tx["details"][0]["amount"]
+        else
+          amount = tx["amount"]
+        end
+
+        self.generated = amount.to_f
       end
-      
-      self.generated = amount.to_f
     end
 
-    # Gets the JSON data of the generatio transaction
+    # Flags the block as orphan if necessary
+    def set_orphan_flag
+      tx = get_generation_tx
+      self.orphan = tx["details"] && (tx["details"][0]["category"] == "orphan")
+
+      # We need to explicitly return true otherwise the callback chain gets halted
+      true
+    end
+
+    # Gets the JSON data of the generation transaction
     def get_generation_tx
-      puts "In get_generation_tx for #{checksum}"
       blk = bitcoin.get_block_by_hash(checksum)
 
       # This assumes the generation tx is always the first in the tx array
-      bitcoin.get_transaction(blk["tx"][0]["hash"])
+      @generation_tx ||= bitcoin.get_transaction(blk["tx"][0]["hash"])
     end
 end
+
+
+  # TODO : Properly remove stales

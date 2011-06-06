@@ -1,6 +1,15 @@
 %h1= t(".my_profile")
 
-%h2= t(".statistics")
+%table.balances
+  %tr
+    %th= t(".confirmed_balance")
+    %td.confirmed= "#{"%.6f" % @user.balance} BTC"
+  %tr
+    %th= t(".unconfirmed_balance")
+    %td.unconfirmed= "#{"%.6f" % @user.balance(false)} BTC"
+
+
+%h2= t(".latest_blocks")
 = render :partial => 'blocks/list', :locals => { :blocks => @blocks }
 
 %h2= t(".payments")

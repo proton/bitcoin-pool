@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   has_many :workers,
     :dependent => :destroy
 
+  has_many :contributions,
+    :through => :workers
+
   # Payments made to this user
   has_many :payments,
     :dependent => :destroy
@@ -37,7 +40,7 @@ class User < ActiveRecord::Base
       :greater_than_or_equal_to => 0,
       :less_than => 100
     },
-    :presence => true 
+    :presence => true
 
   # Useful for display in admin interface
   def to_label
@@ -51,15 +54,15 @@ class User < ActiveRecord::Base
 
   # Balance from regular pooled mining
   def balance(confirmed = true)
-    Contribution.confirmed(confirmed).sum(:amount)
+    contributions.confirmed(confirmed).sum(:amount)
   end
 
   # Pays users if necessary
   def self.pay!
     User.all.each do |user|
-      if user.balance >= user.threshold
-        user.payment.create!({
-            :amount => user.balance.truncate(:places => 2),
+      if user.balance > user.payment_treshold
+        user.payments.create!({
+            :amount => ((user.balance * 100).truncate / 100.0),
             :address => user.address
           }
         )

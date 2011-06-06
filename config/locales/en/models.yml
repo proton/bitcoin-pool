@@ -50,6 +50,8 @@ en:
         generated: Generated BTC
         worker: Worker
         confirmations: Confirmations
+        created_at: Created at
+        orphan: Orphan block
 
       payment:
         transaction_id: Transaction ID

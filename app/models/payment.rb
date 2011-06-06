@@ -22,6 +22,6 @@ class Payment < ActiveRecord::Base
 
     # Generates the bitcoin payment
     def perform_payment
-      self.transaction_id = Bitcoin::Client.new.send_to_address(address, amount)
+      self.transaction_id = bitcoin.send_to_address(address, amount.to_f)
     end
 end

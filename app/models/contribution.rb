@@ -4,11 +4,9 @@ class Contribution < ActiveRecord::Base
 
   # Scopes contributions on confirmed blocks
   def self.confirmed(confirmed = true)
-    if confirmed
-      joins(:blocks).
-        where("`blocks`.`confirmations` >= ?", 120)
-    else
-      all
-    end
+    confirmations = (confirmed ? 120 : -1)
+    
+    joins(:block).
+      where("`blocks`.`confirmations` >= ?", confirmations)
   end
 end

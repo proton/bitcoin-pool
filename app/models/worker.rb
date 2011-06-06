@@ -20,6 +20,9 @@ class Worker < ActiveRecord::Base
     :primary_key => "username",
     :dependent => :destroy
 
+  # A worker can have solved many blocks
+  has_many :blocks
+
   # It should always have a username (nick.suffix)
   validates :username,
     :presence => true,
@@ -50,7 +53,7 @@ class Worker < ActiveRecord::Base
 
   # The blocks actually solved by this worker
   def found_blocks
-    shares.where(:upstream_result => "Y").count + contributions.where(:found_block => true).count
+    shares.where(:upstream_result => "Y").count + blocks.count
   end
 
   # The amount of stale shares submitted
