@@ -10,8 +10,6 @@ class CreateContributions < ActiveRecord::Migration
         :scale => 8,
         :default => 0
 
-      t.boolean :found_block
-
       t.timestamps
     end
   end

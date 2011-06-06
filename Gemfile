@@ -14,3 +14,8 @@ gem 'whenever'
 gem 'active_scaffold_vho',
   :git => 'https://github.com/vhochstein/active_scaffold.git',
   :branch => 'rails-3.0'
+
+group :test do
+  gem 'mocha', :require => false
+  gem 'factory_girl_rails'
+end

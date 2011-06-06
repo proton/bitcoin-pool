@@ -28,7 +28,9 @@ class Worker < ActiveRecord::Base
   # It should always have a suffix
   validates :suffix,
     :presence => true,
-    :length => { :minimum => 4 }
+    :length => { 
+      :minimum => 2
+    }
 
   # It needs a password, we validate a minimum length to avoid possible
   # problems with pushpool

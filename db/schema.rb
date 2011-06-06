@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20110604152451) do
     t.string   "checksum",                                                      :null => false
     t.datetime "found_at",                                                      :null => false
     t.decimal  "generated",     :precision => 16, :scale => 8, :default => 0.0, :null => false
+    t.integer  "worker_id"
     t.integer  "share_id"
     t.integer  "confirmations",                                :default => 0
     t.datetime "created_at"
@@ -29,11 +30,10 @@ ActiveRecord::Schema.define(:version => 20110604152451) do
   create_table "contributions", :force => true do |t|
     t.integer  "block_id"
     t.integer  "worker_id"
-    t.decimal  "score",       :precision => 16, :scale => 8, :default => 0.0, :null => false
-    t.boolean  "found_block"
+    t.decimal  "score",      :precision => 16, :scale => 8, :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "amount",      :precision => 16, :scale => 8, :default => 0.0
+    t.decimal  "amount",     :precision => 16, :scale => 8, :default => 0.0
   end
 
   create_table "payments", :force => true do |t|

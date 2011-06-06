@@ -15,6 +15,7 @@ class CreateBlocks < ActiveRecord::Migration
         :scale => 8,
         :default => 0
 
+      t.integer :worker_id
       t.integer :share_id
 
       t.integer :confirmations,

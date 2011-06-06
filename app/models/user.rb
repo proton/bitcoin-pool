@@ -33,9 +33,11 @@ class User < ActiveRecord::Base
     :uniqueness => true
 
   validates :payment_treshold,
-    :numericality => true,
-    :presence => true,
-    :inclusion => { :in => [0.0..21000000]}
+    :numericality => {
+      :greater_than_or_equal_to => 0,
+      :less_than => 100
+    },
+    :presence => true 
 
   # Useful for display in admin interface
   def to_label
@@ -44,7 +46,7 @@ class User < ActiveRecord::Base
 
   # Total balance available to this user
   def total_balance(confirmed = true)
-     balance(confirmed) + pps_balance - payments.sum(:amount)
+    balance(confirmed) + pps_balance - payments.sum(:amount)
   end
 
   # Balance from regular pooled mining
@@ -65,6 +67,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  
   protected
 
     def self.find_for_database_authentication(warden_conditions)
