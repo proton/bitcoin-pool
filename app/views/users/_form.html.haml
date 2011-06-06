@@ -16,6 +16,10 @@
     = f.text_field :address
     .explanation= t(".address_explanation")
 
+  .form-field
+    = f.label :payment_treshold
+    = f.text_field :payment_treshold
+
   - unless user.new_record?
     .form-field
       = f.label :current_password
