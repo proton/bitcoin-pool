@@ -15,7 +15,9 @@ class Payment < ActiveRecord::Base
 
   validates :amount,
     :presence => true,
-    :inclusion => { :in => [0.01..21000000] }
+    :numericality => {
+      :greater_than_or_equal_to => 0.1
+    }
 
   
   private
