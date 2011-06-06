@@ -143,11 +143,21 @@ class Block < ActiveRecord::Base
     # Sets the generated attribute with the amount of coins that were generated
     # in that block (including transaction fees)
     def get_generated
-      self.generated = get_generation_tx["amount"].to_f
+      tx = get_generation_tx
+      amount = 0
+      
+      if tx["details"] && (tx["details"][0]["category"] == "immature")
+        amount = tx["details"][0]["amount"]
+      else
+        amount = tx["amount"]
+      end
+      
+      self.generated = amount.to_f
     end
 
     # Gets the JSON data of the generatio transaction
     def get_generation_tx
+      puts "In get_generation_tx for #{checksum}"
       blk = bitcoin.get_block_by_hash(checksum)
 
       # This assumes the generation tx is always the first in the tx array
