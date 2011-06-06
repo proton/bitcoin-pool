@@ -40,7 +40,7 @@ namespace :deploy do
 end
 
 task :copy_production_configurations do
-  %w{database}.each do |c|
+  %w{database bitcoin}.each do |c|
     run "cp #{shared_path}/config/#{c}.yml #{release_path}/config/#{c}.yml"
   end
 end
