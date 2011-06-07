@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   validates :payment_treshold,
     :numericality => {
       :greater_than_or_equal_to => 0.1,
-      :less_than => 100
+      :less_than => 10000
     },
     :presence => true
 
