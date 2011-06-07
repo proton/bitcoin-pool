@@ -33,7 +33,7 @@
     %th= t("activerecord.attributes.worker.stale_shares")
     %td= stale_shares_for(@worker)
 
-  %tr.odd
+  %tr.even
     %th= t("activerecord.attributes.worker.created_at")
     %td= l(@worker.created_at, :format => :short)
 
