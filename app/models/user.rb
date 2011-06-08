@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
     User.all.each do |user|
       if user.total_balance > user.payment_treshold
         user.payments.create!({
-            :amount => ((user.balance * 100).truncate / 100.0),
+            :amount => ((user.total_balance * 100).truncate / 100.0),
             :address => user.address
           }
         )
