@@ -3,13 +3,13 @@
 %table.balances
   %tr
     %th= t(".confirmed_balance")
-    %td.confirmed= "#{"%.6f" % @user.balance} BTC"
+    %td.confirmed= "#{"%.6f" % @user.total_balance} BTC"
   %tr
     %th= t(".unconfirmed_balance")
-    %td.unconfirmed= "#{"%.6f" % (@user.balance(false) - @user.balance)} BTC"
+    %td.unconfirmed= "#{"%.6f" % (@user.total_balance(false) - @user.total_balance)} BTC"
   %tr
     %th= t(".total_balance")
-    %td= "#{"%.6f" % @user.balance(false)} BTC"
+    %td= "#{"%.6f" % @user.total_balance(false)} BTC"
 
 %h2= t(".latest_blocks")
 = render :partial => 'blocks/list', :locals => { :blocks => @blocks }

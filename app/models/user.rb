@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   # Pays users if necessary
   def self.pay!
     User.all.each do |user|
-      if user.balance > user.payment_treshold
+      if user.total_balance > user.payment_treshold
         user.payments.create!({
             :amount => ((user.balance * 100).truncate / 100.0),
             :address => user.address
