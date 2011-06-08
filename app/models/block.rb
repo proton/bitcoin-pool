@@ -36,7 +36,7 @@ class Block < ActiveRecord::Base
   validates :worker,
     :presence => true
 
-  validates :share,
+  validates :share_id,
     :presence => true
 
   # Whether the block is actually confirmed and its coins have matured
