@@ -149,7 +149,8 @@ class Block < ActiveRecord::Base
 
   
   def my_share(user)
-    contributions.where("worker_id IN (#{user.workers.map(&:id).join(",")})").sum(:amount)
+    # TODO : Fuck that user.contributions.sum etc. would be much nicer
+    user.workers.blank? ? 0 : contributions.where("worker_id IN (#{user.workers.map(&:id).join(",")})").sum(:amount)
   end
 
   
