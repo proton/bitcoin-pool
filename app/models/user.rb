@@ -16,8 +16,13 @@ class User < ActiveRecord::Base
   has_many :workers,
     :dependent => :destroy
 
+  # Contributions toward solving a block (scoring for a round)
   has_many :contributions,
     :through => :workers
+
+  # Periodically recorded statistics
+  has_many :statistics,
+    :dependent => :destroy
 
   # Payments made to this user
   has_many :payments,

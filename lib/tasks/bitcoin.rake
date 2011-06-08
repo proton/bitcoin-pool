@@ -10,4 +10,10 @@ namespace :bitcoin do
   task :pay_users => :environment do
     User.pay!
   end
+
+  desc "Periodically records various metrics"
+  task :record_stats => :environment do
+    Statistic.record_global_hashrate!
+    Statistic.record_worker_hashrates!
+  end
 end

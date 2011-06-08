@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110606200605) do
+ActiveRecord::Schema.define(:version => 20110608195953) do
 
   create_table "blocks", :force => true do |t|
     t.integer  "number"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(:version => 20110606200605) do
     t.text      "solution"
     t.timestamp "created_at",      :null => false
   end
+
+  create_table "statistics", :force => true do |t|
+    t.string   "metric",      :null => false
+    t.float    "value",       :null => false
+    t.integer  "worker_id"
+    t.datetime "recorded_at", :null => false
+  end
+
+  add_index "statistics", ["recorded_at"], :name => "index_statistics_on_recorded_at"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                                                :default => "",  :null => false

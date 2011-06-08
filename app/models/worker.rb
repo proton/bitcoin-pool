@@ -2,6 +2,9 @@ class Worker < ActiveRecord::Base
   # A worker always belongs to an account
   belongs_to :user
 
+  has_many :statistics,
+    :dependent => :destroy
+
   # It might have contributed to solving one or more blocks
   has_many :contributions,
     :dependent => :destroy
