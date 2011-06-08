@@ -5,6 +5,7 @@ class CreateStatistics < ActiveRecord::Migration
       t.float :value, :null => false
 
       t.integer :worker_id
+      t.integer :user_id
 
       t.datetime :recorded_at, :null => false
     end

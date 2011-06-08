@@ -28,6 +28,7 @@ class Statistic < ActiveRecord::Base
       create!({
           :metric => 'hashrate',
           :value => worker.hashrate,
+          :worker => worker,
           :user => worker.user,
           :recorded_at => recorded_at
         })
