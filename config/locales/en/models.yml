@@ -53,6 +53,7 @@ en:
         confirmations: Confirmations
         created_at: Created at
         orphan: Orphan block
+        my_share: My share
 
       payment:
         transaction_id: Transaction ID

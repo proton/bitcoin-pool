@@ -19,5 +19,9 @@ module Bitcoin
         }
       )
     end
+    
+    def testnet?
+      get_info["testnet"]
+    end
   end
 end

@@ -3,7 +3,8 @@
     %th= t("activerecord.attributes.block.found_at")
     %th= t("activerecord.attributes.block.checksum")
     %th= t("activerecord.attributes.block.generated")
-    %th= t("activerecord.attributes.block.worker")
+    - if current_user
+      %th= t("activerecord.attributes.block.my_share")
     %th= t("activerecord.attributes.block.confirmations")
 
   - unless blocks.blank?
@@ -11,8 +12,9 @@
       %tr{ :class => [cycle('even', 'odd'), orphan_class_for(block)] }
         %td= time_ago_in_words(block.found_at)
         %td= hash_string_for_block(block.checksum)
-        %td.fixed= "%2.4f" % block.generated.to_s
-        %td= block.worker.username
+        %td.fixed= "%2.4f" % block.generated
+        - if current_user
+          %td.fixed= "%2.4f" % block.my_share(current_user)
         %td= confirmation_string_for(block, t(".confirmed"))
 
   - else

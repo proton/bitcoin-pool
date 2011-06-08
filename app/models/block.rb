@@ -147,7 +147,12 @@ class Block < ActiveRecord::Base
     save!
   end
 
+  
+  def my_share(user)
+    contributions.where("worker_id IN (#{user.workers.map(&:id).join(",")})").sum(:amount)
+  end
 
+  
   protected
 
     # Sets the generated attribute with the amount of coins that were generated

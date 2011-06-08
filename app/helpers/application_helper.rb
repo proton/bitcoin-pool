@@ -25,6 +25,18 @@ module ApplicationHelper
       :trillion => "Th/s",
       :quadrillion => "Ph/s"
     }
-
+  end
+  
+  def format_bitcoin_address(address)
+    testnet = Bitcoin::Client.instance.testnet? ? "testnet/" : ""
+      
+    content_tag :a,
+      :title => address,
+      :target => "_blank",
+      :href => "http://blockexplorer.com/#{testnet}address/#{address}" do
+      content_tag :span, :class => "address" do
+        address
+      end
+    end
   end
 end

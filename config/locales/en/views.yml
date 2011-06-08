@@ -67,6 +67,7 @@ en:
       payments: Payments
       confirmed_balance: Confirmed balance
       unconfirmed_balance: Unconfirmed balance
+      total_balance: Total balance
     edit:
       account_details: Edit your account
       change_password: Change your password

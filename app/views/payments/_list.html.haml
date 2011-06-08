@@ -9,9 +9,9 @@
     - payments.each do |payment|
       %tr{ :class => cycle('even', 'odd') }
         %td.fixed= "%.2f" % payment.amount
-        %td.fixed= payment.address
-        %td= hash_string_for_transaction(transaction_id)
-        %td= l(payment.created_at)
+        %td.fixed= format_bitcoin_address(payment.address)
+        %td= hash_string_for_transaction(payment.transaction_id)
+        %td= l(payment.created_at, :format => :short)
 
   - else
     = render :partial => 'layouts/no_data', :locals => { :message => t('.no_payments') }

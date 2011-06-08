@@ -9,11 +9,12 @@ module BlocksHelper
 
   def hash_string_for_block(checksum)
     stripped_hash = checksum.gsub(/^0*/, "")[0,26]
-
+    testnet = Bitcoin::Client.instance.testnet? ? "testnet/" : ""
+      
     content_tag :a,
       :title => checksum,
       :target => "_blank",
-      :href => "http://blockexplorer.com/testnet/block/#{checksum}" do
+      :href => "http://blockexplorer.com/#{testnet}block/#{checksum}" do
       content_tag :span, :class => "hash" do
         stripped_hash
       end
