@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
   # Total balance available to this user
   def total_balance(confirmed = true)
-    balance(confirmed) + pps_balance - payments.sum(:amount)
+    balance(confirmed) - payments.sum(:amount)
   end
 
   # Balance from regular pooled mining
