@@ -42,3 +42,9 @@ table.balances td.unconfirmed {
   color: orange;
 }
 
+/* Beta banner */
+img#beta-banner {
+  position: absolute;
+  margin-left: -25px;
+  margin-top: -25px;
+}
