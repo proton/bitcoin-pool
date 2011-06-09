@@ -45,6 +45,11 @@ class Statistic < ActiveRecord::Base
     where("worker_id = ?", worker.id)
   end
 
+  # Scopes on global stats
+  def self.global
+    where("user_id IS NULL AND worker_id IS NULL")
+  end
+
   # Removes old individual stats
   def self.purge!
     where("created_at < ?", DateTime.now.advance(:days => -7)).

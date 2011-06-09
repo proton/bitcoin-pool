@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20110608195953) do
     t.string   "metric",      :null => false
     t.float    "value",       :null => false
     t.integer  "worker_id"
+    t.integer  "user_id"
     t.datetime "recorded_at", :null => false
   end
 
