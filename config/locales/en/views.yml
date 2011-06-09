@@ -5,7 +5,9 @@ en:
       description: >
         This is the demo instance of the bitcoin-pool app. It is intended as a frontend
         for the open-source pushpool pooled Bitcoin mining proxy.
-      development_status: It is currently under heavy development, check on it from time to time !
+        
+    global_statistics:
+      hashrate_graph: Server hashrate over time
 
   layouts:
     application:

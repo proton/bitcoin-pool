@@ -1,4 +1,7 @@
-%h1= t(".header")
-%p= t(".description")
-%p= t(".development_status")
-  
+#left-column
+  %h1= t(".header")
+  %p#intro-text= t(".description")
+
+#right-column
+  = render :partial => 'global_statistics', :locals => { :series => @series }
+

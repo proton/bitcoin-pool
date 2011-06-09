@@ -1,9 +1,0 @@
-.chart-container
-  %h3 Server hashrate over time
-  #hashrate-chart.chart{ :style => "margin:auto;margin-top:2em;width:400px;height:300px" }
-
-%script{ :type => "text/javascript" }
-  options = #{jqchart_defaults.to_json.html_safe};
-  options.axes.xaxis.renderer = $.jqplot.DateAxisRenderer;
-
-  $.jqplot('hashrate-chart',#{@series.to_json.html_safe}, options)

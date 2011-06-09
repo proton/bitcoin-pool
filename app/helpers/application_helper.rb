@@ -39,16 +39,4 @@ module ApplicationHelper
       end
     end
   end
-
-  def jqchart_defaults
-    {
-      :legend => {
-        :show => true
-      },
-      :axes => {
-        :yaxis => { },
-        :xaxis => { }
-      }
-    }
-  end
 end

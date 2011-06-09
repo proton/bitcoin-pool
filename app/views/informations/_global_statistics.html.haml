@@ -1,0 +1,10 @@
+#hashrate-chart.chart-container{ :style => "margin:auto;margin-top:2em;width:400px;height:300px" }
+  %h3= t(".hashrate_graph")
+
+  #hashrate-chart-container.chart
+
+%script{ :type => "text/javascript" }
+  options = #{jqchart_defaults.to_json.html_safe};
+  options.axes.xaxis.renderer = $.jqplot.DateAxisRenderer;
+
+  $.jqplot('hashrate-chart-container',#{@series.to_json.html_safe}, options)

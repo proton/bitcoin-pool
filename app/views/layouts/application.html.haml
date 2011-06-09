@@ -30,8 +30,9 @@
       #right-content
         = yield
 
-        = render :partial => 'layouts/global_statistics'
-        
+        / This is used to force the container to stretch
+        %div{ :style => "clear:both" }
+
     #footer= t(".footer")
       
 

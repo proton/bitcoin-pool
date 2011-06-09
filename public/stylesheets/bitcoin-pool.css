@@ -48,3 +48,17 @@ img#beta-banner {
   margin-left: -25px;
   margin-top: -25px;
 }
+
+/* Hashrate table */
+div#right-column {
+    float:right;
+    width:45%;
+}
+
+/* Introduction text */
+div#left-column {
+
+    float: left;
+    text-align: justify;
+    width: 45%;
+}
